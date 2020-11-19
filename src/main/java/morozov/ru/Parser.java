@@ -1,6 +1,5 @@
 package morozov.ru;
 
-import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -22,6 +21,7 @@ import java.util.logging.Logger;
  * String getPartOfProducts(int limit, int offset) - список товаров за лдин запрос.
  * String parsingOSingleString(String input) - парсинг строки, полученной из метода выше.
  * String getFields(JSONArray jsonArray, List<String> keys) - выдёргивание значений по ключам.
+ * runOverFields(StringBuilder builder, JSONObject o, List<String> keys) - что б избавиться от повторяющегося кода.
  */
 public class Parser {
 
@@ -44,7 +44,7 @@ public class Parser {
     private final List<String> traceKeyList = new ArrayList<>(Arrays.asList("pvid", "scm-cnt", "gps-id"));
 
     /**
-     * Метод, записывающий результаты похода на Aliexpress в фаил.
+     * Метод, возвращающий готовую для записи строку-результат похода на Aliexpress.
      *
      * @param count
      * @throws IOException
